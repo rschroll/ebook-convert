@@ -164,16 +164,19 @@ def initialize_calibre():
             pass
 
     builtins.__dict__['lopen'] = open  # legacy compatibility
-    from calibre.utils.icu import lower as icu_lower
-    from calibre.utils.icu import title_case
-    from calibre.utils.icu import upper as icu_upper
+    #from calibre.utils.icu import lower as icu_lower
+    icu_lower = lambda s: s.lower()
+    #from calibre.utils.icu import title_case
+    title_case = lambda s: s.title()
+    #from calibre.utils.icu import upper as icu_upper
+    icu_upper = lambda s: s.upper()
     builtins.__dict__['icu_lower'] = icu_lower
     builtins.__dict__['icu_upper'] = icu_upper
     builtins.__dict__['icu_title'] = title_case
 
     builtins.__dict__['connect_lambda'] = connect_lambda
 
-    if sys.version_info[:2] < (3, 14) and (islinux or ismacos or isfreebsd):
+    if False and sys.version_info[:2] < (3, 14) and (islinux or ismacos or isfreebsd):
         # Name all threads at the OS level created using the threading module, see
         # https://github.com/python/cpython/issues/59705
         import threading

@@ -697,7 +697,7 @@ def read_tweaks():
     return default_tweaks
 
 
-tweaks = read_tweaks()
+tweaks = dict()
 
 
 def migrate_tweaks_to_prefs():
