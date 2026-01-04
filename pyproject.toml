@@ -7,10 +7,20 @@ authors = [
     { name = "Robert Schroll", email = "rschroll@gmail.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "beautifulsoup4>=4.14.3",
+    "css-parser>=1.0.10",
+    "html5lib>=1.1",
+    "lxml>=6.0.2",
+    "mechanize>=0.4.10",
+    "msgpack>=1.1.2",
+    "pillow>=12.1.0",
+    "regex>=2025.11.3",
+]
 
 [project.scripts]
 ebook-convert = "calibre.ebooks.conversion.cli:main"
+calibre-parallel = "calibre.utils.ipc.worker:main"
 
 [build-system]
 requires = ["uv_build"]

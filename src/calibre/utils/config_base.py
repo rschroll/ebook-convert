@@ -697,7 +697,11 @@ def read_tweaks():
     return default_tweaks
 
 
-tweaks = dict()
+tweaks = dict(authors_split_regex = r'(?i),?\s+(and|with)\s+',
+              gui_timestamp_display_format = 'dd MMM yyyy',
+              gui_pubdate_display_format = 'MMM yyyy',
+              gui_last_modified_display_format = 'dd MMM yyyy',
+              use_series_auto_increment_tweak_when_importing = False)
 
 
 def migrate_tweaks_to_prefs():

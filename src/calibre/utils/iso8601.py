@@ -5,8 +5,6 @@
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
-from calibre_extensions import speedup
-
 try:
     import tzlocal  # inside the try for people running from source without updated binaries
     tz_name = tzlocal.get_localzone_name()
@@ -19,6 +17,8 @@ UNDEFINED_DATE = datetime(101,1,1, tzinfo=utc_tz)
 
 
 def parse_iso8601(date_string, assume_utc=False, as_utc=True, require_aware=False):
+    #TODO: Handle TZ options, if necessary
+    return datetime.fromisoformat(date_string)
     if not date_string:
         return UNDEFINED_DATE
     dt, aware, tzseconds = speedup.parse_iso8601(date_string)

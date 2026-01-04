@@ -6,8 +6,9 @@ import re
 from html.entities import name2codepoint
 
 from calibre.constants import preferred_encoding
-from calibre_extensions.speedup import clean_xml_chars as _ncxc
-
+#from calibre_extensions.speedup import clean_xml_chars as _ncxc
+#TODO: Fix this
+_ncxc = lambda s: s
 
 def native_clean_xml_chars(x):
     if isinstance(x, bytes):

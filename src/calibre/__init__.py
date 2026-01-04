@@ -497,6 +497,8 @@ def replace_entities(raw, encoding=None):
 
 
 def xml_replace_entities(raw, encoding=None):
+    #TODO: Fix this to do something
+    return raw
     from calibre_extensions.fast_html_entities import replace_all_entities
     return replace_all_entities(raw, True)
 

@@ -7,7 +7,7 @@ __copyright__ = '2013, Kovid Goyal <kovid at kovidgoyal.net>'
 import re
 import unicodedata
 
-import html5_parser
+import html5lib as html5_parser
 from lxml.etree import Element as LxmlElement
 
 from calibre.ebooks.chardet import strip_encoding_declarations, xml_to_unicode
