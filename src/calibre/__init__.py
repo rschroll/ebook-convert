@@ -38,8 +38,7 @@ from calibre.startup import initialize_calibre
 
 initialize_calibre()
 from calibre.prints import prints
-#from calibre.utils.icu import safe_chr
-safe_chr = lambda c: c
+from calibre.utils.icu import safe_chr
 from calibre.utils.resources import get_path as P
 
 if False:

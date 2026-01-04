@@ -10,7 +10,7 @@ import sys
 import threading
 
 from calibre.utils.config_base import prefs, tweaks
-from calibre_extensions import icu as _icu
+#from calibre_extensions import icu as _icu
 from polyglot.builtins import cmp
 
 _locale = None
@@ -20,8 +20,8 @@ _none = ''
 _none2 = b''
 _cmap = {}
 
-icu_unicode_version = _icu.unicode_version
-_nmodes = {m:getattr(_icu, m) for m in ('NFC', 'NFD', 'NFKC', 'NFKD')}
+#icu_unicode_version = _icu.unicode_version
+#_nmodes = {m:getattr(_icu, m) for m in ('NFC', 'NFD', 'NFKC', 'NFKD')}
 
 
 # Ensure that the python internal filesystem and default encodings are not ASCII
@@ -32,7 +32,7 @@ def is_ascii(name):
         return True
 
 
-try:
+""" try:
     if is_ascii(sys.getdefaultencoding()):
         _icu.set_default_encoding(b'utf-8')
 except Exception:
@@ -46,7 +46,7 @@ except Exception:
     import traceback
     traceback.print_exc()
 del is_ascii
-
+ """
 
 thread_local_collator_cache = threading.local()
 
@@ -205,7 +205,8 @@ def make_change_case_func(which, name):
 
 # ################ The string functions ########################################
 sort_key = make_sort_key_func(sort_collator)
-numeric_sort_key = make_sort_key_func(numeric_collator)
+#TODO: Fix this
+numeric_sort_key = lambda s: s #make_sort_key_func(numeric_collator)
 primary_sort_key = make_sort_key_func(primary_collator)
 case_sensitive_sort_key = make_sort_key_func(case_sensitive_collator)
 collation_order = make_sort_key_func(sort_collator, 'collation_order')
@@ -214,9 +215,9 @@ collation_order_for_partitioning = make_sort_key_func(non_numeric_sort_collator,
 strcmp = make_two_arg_func(sort_collator)
 case_sensitive_strcmp = make_two_arg_func(case_sensitive_collator)
 primary_strcmp = make_two_arg_func(primary_collator)
-upper = make_change_case_func(_icu.UPPER_CASE, 'upper')
-lower = make_change_case_func(_icu.LOWER_CASE, 'lower')
-title_case = make_change_case_func(_icu.TITLE_CASE, 'title_case')
+upper = lambda s: s.upper() #make_change_case_func(_icu.UPPER_CASE, 'upper')
+lower = lambda s: s.lower() #make_change_case_func(_icu.LOWER_CASE, 'lower')
+title_case = lambda s: s.title() #make_change_case_func(_icu.TITLE_CASE, 'title_case')
 
 
 def capitalize(x):
@@ -226,7 +227,7 @@ def capitalize(x):
         return x
 
 
-swapcase = swap_case = _icu.swap_case
+#swapcase = swap_case = _icu.swap_case
 
 find = make_two_arg_func(collator, 'find')
 primary_find = make_two_arg_func(primary_collator, 'find')
@@ -236,8 +237,9 @@ primary_contains = make_two_arg_func(primary_collator, 'contains')
 primary_no_punc_contains = make_two_arg_func(primary_collator_without_punctuation, 'contains')
 startswith = make_two_arg_func(collator, 'startswith')
 primary_startswith = make_two_arg_func(primary_collator, 'startswith')
-safe_chr = _icu.chr
-ord_string = _icu.ord_string
+#TODO: Fix this
+safe_chr = lambda c: c #_icu.chr
+#ord_string = _icu.ord_string
 
 
 def character_name(string):
@@ -297,7 +299,7 @@ def partition_by_first_letter(items, reverse=False, key=lambda x:x):
 string_length = len
 
 # Return the number of UTF-16 codepoints in a string
-utf16_length = _icu.utf16_length
+#utf16_length = _icu.utf16_length
 
 
 def remove_accents_icu(txt: str) -> str:
