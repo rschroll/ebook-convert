@@ -6,20 +6,9 @@ __docformat__ = 'restructuredtext en'
 Perform various initialization tasks.
 '''
 
-import builtins
 import locale
 import os
 import sys
-
-# Default translation is NOOP
-builtins.__dict__['_'] = lambda s: s
-
-# For strings which belong in the translation tables, but which shouldn't be
-# immediately translated to the environment language
-builtins.__dict__['__'] = lambda s: s
-
-# For backwards compat with some third party plugins
-builtins.__dict__['dynamic_property'] = lambda func: func(None)
 
 from calibre.constants import DEBUG, isfreebsd, islinux, ismacos, iswindows
 
@@ -162,16 +151,6 @@ def initialize_calibre():
                 locale.setlocale(locale.LC_ALL, dl)
         except Exception:
             pass
-
-    builtins.__dict__['lopen'] = open  # legacy compatibility
-    from calibre.utils.icu import lower as icu_lower
-    from calibre.utils.icu import title_case
-    from calibre.utils.icu import upper as icu_upper
-    builtins.__dict__['icu_lower'] = icu_lower
-    builtins.__dict__['icu_upper'] = icu_upper
-    builtins.__dict__['icu_title'] = title_case
-
-    builtins.__dict__['connect_lambda'] = connect_lambda
 
     if False and sys.version_info[:2] < (3, 14) and (islinux or ismacos or isfreebsd):
         # Name all threads at the OS level created using the threading module, see
