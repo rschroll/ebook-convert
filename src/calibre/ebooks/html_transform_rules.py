@@ -6,7 +6,7 @@ import re
 from functools import partial
 
 from css_selectors.select import Select, get_parsed_selector
-from html5_parser import parse
+from html5lib import parse
 from lxml import etree
 
 from calibre.ebooks.metadata.tag_mapper import uniq

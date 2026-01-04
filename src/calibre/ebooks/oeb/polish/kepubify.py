@@ -36,6 +36,7 @@ from calibre.spell.break_iterator import sentence_positions
 from calibre.srv.render_book import Profiler, calculate_number_of_workers
 from calibre.utils.filenames import make_long_path_useable
 from calibre.utils.localization import canonicalize_lang, get_lang
+from calibre.utils.resources import get_path as P
 from calibre.utils.short_uuid import uuid4
 
 KOBO_CSS_ID = 'kobostylehacks'  # kepubify uses class, actual books from Kobo use id

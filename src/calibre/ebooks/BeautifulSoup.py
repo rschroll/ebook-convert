@@ -16,8 +16,9 @@ def parse_html(markup):
     else:
         markup = xml_to_unicode(markup, strip_encoding_pats=True, resolve_entities=True)[0]
     markup = clean_xml_chars(markup)
-    from html5_parser.soup import parse
-    return parse(markup, return_root=False)
+    #TODO: Switched from html5_parser.soup.  Not sure if this is equivalent
+    from html5lib import parse
+    return parse(markup)
 
 
 def prettify(soup):
