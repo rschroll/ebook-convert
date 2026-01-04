@@ -18,7 +18,7 @@ def parse_html(markup):
     markup = clean_xml_chars(markup)
     #TODO: Switched from html5_parser.soup.  Not sure if this is equivalent
     from html5lib import parse
-    return parse(markup)
+    return bs4.BeautifulSoup(markup, 'lxml')
 
 
 def prettify(soup):

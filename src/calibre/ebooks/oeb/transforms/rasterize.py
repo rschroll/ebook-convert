@@ -12,7 +12,7 @@ from functools import lru_cache
 from urllib.parse import urldefrag
 
 from lxml import etree
-from qt.core import QBuffer, QByteArray, QColor, QImage, QIODevice, QPainter, QSvgRenderer, Qt
+#from qt.core import QBuffer, QByteArray, QColor, QImage, QIODevice, QPainter, QSvgRenderer, Qt
 
 from calibre import guess_type
 from calibre.ebooks.oeb.base import PNG_MIME, SVG_MIME, XHTML, XLINK, urlnormalize, xml2str, xpath
@@ -73,8 +73,8 @@ class SVGRasterizer:
     def __init__(self, base_css='', save_svg_originals=False):
         self.base_css = base_css
         self.save_svg_originals = save_svg_originals
-        from calibre.gui2 import must_use_qt
-        must_use_qt()
+        #from calibre.gui2 import must_use_qt
+        #must_use_qt()
 
     @classmethod
     def config(cls, cfg):

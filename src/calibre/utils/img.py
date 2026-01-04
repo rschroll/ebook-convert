@@ -12,7 +12,7 @@ from contextlib import suppress
 from io import BytesIO
 from threading import Thread
 
-from qt.core import QBuffer, QByteArray, QColor, QImage, QImageReader, QImageWriter, QIODevice, QPixmap, Qt, QTransform, qRgba
+#from qt.core import QBuffer, QByteArray, QColor, QImage, QImageReader, QImageWriter, QIODevice, QPixmap, Qt, QTransform, qRgba
 
 from calibre import fit_image, force_unicode
 from calibre.constants import iswindows
@@ -21,7 +21,7 @@ from calibre.utils.config_base import tweaks
 from calibre.utils.filenames import atomic_rename
 from calibre.utils.imghdr import what
 from calibre.utils.resources import get_image_path as I
-from calibre_extensions import imageops
+#from calibre_extensions import imageops
 
 
 # Utilities {{{
@@ -118,6 +118,7 @@ def null_image():
 
 def image_from_data(data):
     ' Create an image object from data, which should be a bytestring. '
+    assert False, "This function cannot be used without Qt."
     if isinstance(data, QImage):
         return data
     set_image_allocation_limit()

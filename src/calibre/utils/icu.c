@@ -1651,7 +1651,6 @@ static struct PyModuleDef module_def = {
     .m_slots    = slots,
 };
 
-#define CALIBRE_MODINIT_FUNC __attribute__ ((visibility ("default"))) PyObject*
 CALIBRE_MODINIT_FUNC PyInit_icu(void) { return PyModuleDef_Init(&module_def); }
 
 // }}}

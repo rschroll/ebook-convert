@@ -12,7 +12,7 @@ from functools import lru_cache
 from itertools import count, repeat
 from urllib.parse import urlparse
 
-from html5_parser import parse
+from html5lib import parse
 from qt.core import QApplication, QByteArray, QMarginsF, QObject, QPageLayout, Qt, QTimer, QUrl, pyqtSignal, sip
 from qt.webengine import (
     QWebEnginePage,

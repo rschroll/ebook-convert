@@ -30,6 +30,41 @@ build-backend = "setuptools.build_meta"
 name = "calibre_extensions.icu"
 sources = ["src/calibre/utils/icu.c"]
 libraries = ["icudata", "icui18n", "icuuc", "icuio"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=__attribute__ ((visibility ("default"))) PyObject*']
+
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.fast_html_entities"
+sources = ["src/calibre/ebooks/html_entities.c"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=__attribute__ ((visibility ("default"))) PyObject*']
+
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.speedup"
+sources = ["src/calibre/utils/speedup.c"]
+libraries = ["m"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=__attribute__ ((visibility ("default"))) PyObject*']
+
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.lzx"
+sources = ["src/calibre/utils/lzx/lzxmodule.c", "src/calibre/utils/lzx/compressor.c", "src/calibre/utils/lzx/lzxd.c", "src/calibre/utils/lzx/lzc.c", "src/calibre/utils/lzx/lzxc.c"]
+include-dirs = ["src/calibre/utils/lzx"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=__attribute__ ((visibility ("default"))) PyObject*']
+
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.cPalmdoc"
+sources = ["src/calibre/ebooks/compression/palmdoc.c"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=__attribute__ ((visibility ("default"))) PyObject*']
+
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.msdes"
+sources = ["src/calibre/utils/msdes/msdesmodule.c", "src/calibre/utils/msdes/des.c"]
+include-dirs = ["src/calibre/utils/msdes"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=__attribute__ ((visibility ("default"))) PyObject*']
+
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.fast_css_transform"
+sources = ["src/calibre/srv/fast_css_transform.cpp"]
+include-dirs = ["src/perfect-hashing"]
+extra-compile-args = ['-DCALIBRE_MODINIT_FUNC=extern "C" __attribute__ ((visibility ("default"))) PyObject*']
 
 [tool.setuptools.packages.find]
 where = ["src"]
