@@ -23,11 +23,16 @@ ebook-convert = "calibre.ebooks.conversion.cli:main"
 calibre-parallel = "calibre.utils.ipc.worker:main"
 
 [build-system]
-requires = ["uv_build"]
-build-backend = "uv_build"
+requires = ["setuptools >= 80.0.0"]
+build-backend = "setuptools.build_meta"
 
-[tool.uv.build-backend]
-module-name = "calibre"
+[[tool.setuptools.ext-modules]]
+name = "calibre_extensions.icu"
+sources = ["src/calibre/utils/icu.c"]
+libraries = ["icudata", "icui18n", "icuuc", "icuio"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [dependency-groups]
 dev = [
