@@ -703,7 +703,20 @@ tweaks = dict(authors_split_regex = r'(?i),?\s+(and|with)\s+',
               gui_pubdate_display_format = 'MMM yyyy',
               gui_last_modified_display_format = 'dd MMM yyyy',
               use_series_auto_increment_tweak_when_importing = False,
-              locale_for_sorting = '')
+              locale_for_sorting = '',
+              author_sort_copy_method = 'comma',
+              author_name_suffixes = ('Jr', 'Sr', 'Inc', 'Ph.D', 'Phd',
+                                      'MD', 'M.D', 'I', 'II', 'III', 'IV',
+                                      'Junior', 'Senior'),
+              author_name_prefixes = ('Mr', 'Mrs', 'Ms', 'Dr', 'Prof'),
+              author_name_copywords = (
+                  'Agency', 'Corporation', 'Company', 'Co.', 'Council',
+                  'Committee', 'Inc.', 'Institute', 'National', 'Society', 'Club', 'Team',
+                  'Software', 'Games', 'Entertainment', 'Media', 'Studios',
+              ),
+              author_use_surname_prefixes = False,
+              author_surname_prefixes = ('da', 'de', 'di', 'la', 'le', 'van', 'von'),
+              )
 
 
 def migrate_tweaks_to_prefs():

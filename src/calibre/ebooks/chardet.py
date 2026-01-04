@@ -9,6 +9,8 @@ import codecs
 import re
 import sys
 
+import chardet
+
 from calibre import xml_replace_entities
 
 _encoding_pats = (
@@ -105,8 +107,7 @@ _CHARSET_ALIASES = {'macintosh': 'mac-roman', 'x-sjis': 'shift-jis', 'mac-centra
 def detect(bytestring):
     if isinstance(bytestring, str):
         bytestring = bytestring.encode('utf-8', 'replace')
-    from calibre_extensions.uchardet import detect as implementation
-    enc = implementation(bytestring).lower()
+    enc = chardet.detect(bytestring)['encoding']
     enc = _CHARSET_ALIASES.get(enc, enc)
     return {'encoding': enc, 'confidence': 1 if enc else 0}
 

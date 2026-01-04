@@ -11,7 +11,7 @@ import re
 import unittest
 from collections import defaultdict
 
-from html5_parser import parse
+from html5lib import parse
 from lxml.etree import Comment
 
 from calibre import isbytestring, replace_entities
@@ -87,16 +87,16 @@ def parse_metadata(src):
     identifier_pat = re.compile(r'(?:dc|dcterms)[.:]identifier(?:\.|$)', flags=re.IGNORECASE)
     id_pat2 = re.compile(r'(?:dc|dcterms)[.:]identifier$', flags=re.IGNORECASE)
 
-    for comment in root.iterdescendants(tag=Comment):
+    for comment in root.iter(tag=Comment):
         if comment.text:
             handle_comment(comment.text, comment_tags)
 
-    for q in root.iterdescendants(tag='title'):
+    for q in root.iter(tag='title'):
         if q.text:
             title = q.text
             break
 
-    for meta in root.iterdescendants(tag='meta'):
+    for meta in root.iter(tag='meta'):
         name, content = meta.get('name'), meta.get('content')
         if not name or not content:
             continue
