@@ -31,7 +31,6 @@ from calibre.customize.builtins import plugins as builtin_plugins
 from calibre.customize.conversion import InputFormatPlugin, OutputFormatPlugin
 from calibre.customize.profiles import InputProfile, OutputProfile
 from calibre.customize.zipplugin import loader
-from calibre.devices.interface import DevicePlugin
 from calibre.ebooks.metadata import MetaInformation
 from calibre.ebooks.metadata.sources.base import Source
 from calibre.utils.config import Config, ConfigProxy, OptionParser, make_config_dir, plugin_dir
@@ -672,35 +671,6 @@ def plugin_for_catalog_format(fmt):
         if fmt.lower() in plugin.file_types:
             return plugin
 
-# }}}
-
-
-# Device plugins {{{
-
-def device_plugins(include_disabled=False):
-    for plugin in _initialized_plugins:
-        if isinstance(plugin, DevicePlugin):
-            if include_disabled or not is_disabled(plugin):
-                if platform in plugin.supported_platforms:
-                    if getattr(plugin, 'plugin_needs_delayed_initialization',
-                            False):
-                        plugin.do_delayed_plugin_initialization()
-                    yield plugin
-
-
-def usbms_plugins(include_disabled=True):
-    from calibre.devices.usbms.driver import USBMS
-    for plugin in device_plugins(include_disabled):
-        if isinstance(plugin, USBMS) and plugin.name not in ('Folder Device Interface', 'User Defined USB driver'):
-            yield plugin
-
-
-def disabled_device_plugins():
-    for plugin in _initialized_plugins:
-        if isinstance(plugin, DevicePlugin):
-            if is_disabled(plugin):
-                if platform in plugin.supported_platforms:
-                    yield plugin
 # }}}
 
 

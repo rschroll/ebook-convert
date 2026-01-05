@@ -14,7 +14,6 @@ from urllib.parse import urlparse
 
 from calibre import __appname__, entity_regex, entity_to_unicode, fit_image, force_unicode, preferred_encoding
 from calibre.constants import filesystem_encoding
-from calibre.devices.interface import DevicePlugin as Device
 from calibre.ebooks import ConversionError
 from calibre.ebooks.BeautifulSoup import BeautifulSoup, Comment, Declaration, NavigableString, ProcessingInstruction, Tag
 from calibre.ebooks.chardet import xml_to_unicode
@@ -45,6 +44,9 @@ from calibre.ebooks.lrf.pylrs.pylrs import (
 )
 from calibre.ptempfile import PersistentTemporaryFile
 from polyglot.urllib import unquote
+
+# from src/calibre/devices/interface.py:DevicePlugin
+THUMBNAIL_HEIGHT = 68
 
 '''
 Code to convert HTML ebooks into LRF ebooks.
@@ -1797,7 +1799,7 @@ def process_file(path, options, logger):
         if not os.path.isabs(options.cover):
             options.cover = os.path.join(dirpath, options.cover)
         if os.access(options.cover, os.R_OK):
-            th = Device.THUMBNAIL_HEIGHT
+            th = THUMBNAIL_HEIGHT
             im = PILImage.open(options.cover)
             pwidth, pheight = options.profile.screen_width, \
                               options.profile.screen_height - options.profile.fudge
