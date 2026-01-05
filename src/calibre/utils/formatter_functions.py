@@ -25,7 +25,6 @@ from math import ceil, floor, modf, trunc
 
 from calibre import human_readable, prepare_string_for_xml, prints
 from calibre.constants import DEBUG
-from calibre.db.constants import DATA_DIR_NAME, DATA_FILE_PATTERN
 from calibre.ebooks.metadata import title_sort
 from calibre.ebooks.metadata.book.base import field_metadata
 from calibre.ebooks.metadata.search_internet import qquote
@@ -36,6 +35,10 @@ from calibre.utils.icu import lower as icu_lower
 from calibre.utils.localization import _ as xlated
 from calibre.utils.localization import calibre_langcode_to_name, canonicalize_lang
 from calibre.utils.titlecase import titlecase
+
+# from calibre.db.constants
+DATA_DIR_NAME = 'data'
+DATA_FILE_PATTERN = f'{DATA_DIR_NAME}/**/*'
 
 UNKNOWN = _('Unknown')
 RELATIONAL = _('Relational')

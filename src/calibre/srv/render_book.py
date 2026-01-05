@@ -23,8 +23,7 @@ from calibre.ebooks.oeb.polish.container import Container as ContainerBase
 from calibre.ebooks.oeb.polish.cover import find_cover_image, find_cover_image_in_page, find_cover_page
 from calibre.ebooks.oeb.polish.toc import from_xpaths, get_landmarks, get_toc
 from calibre.ebooks.oeb.polish.utils import guess_type
-from calibre.srv.metadata import encode_datetime
-from calibre.utils.date import EPOCH
+from calibre.utils.date import EPOCH, encode_datetime
 from calibre.utils.forked_map import forked_map, forked_map_is_supported
 from calibre.utils.logging import default_log
 from calibre.utils.serialize import json_dumps, json_loads, msgpack_loads

@@ -505,3 +505,15 @@ def replace_months(datestr, clang):
         if tmp != datestr:
             break
     return tmp
+
+
+def encode_datetime(dateval):
+    if dateval is None:
+        return 'None'
+    if not isinstance(dateval, datetime):
+        dateval = datetime.combine(dateval, time())
+    if hasattr(dateval, 'tzinfo') and dateval.tzinfo is None:
+        dateval = dateval.replace(tzinfo=local_tz)
+    if dateval <= UNDEFINED_DATE:
+        return None
+    return isoformat(dateval)
